@@ -1,0 +1,125 @@
+openapi: 3.0.0
+info:
+  title: Task Manager Api Documentation
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://task-manager-pvs.herokuapp.com/
+  variables: {}
+paths:
+  /tasks:
+    get:
+      tags:
+      - Tasks
+      summary: Get All Tasks
+      operationId: GetAllTasks
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    post:
+      tags:
+      - Tasks
+      summary: Create Task
+      operationId: CreateTask
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskRequest'
+            example:
+              name: test
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /tasks/{id}: 
+    get: 
+      tags:
+      - Single Task 
+      parameters: 
+        - name: id
+          in: path
+          required: true
+          schema: 
+            type: string
+      description: The Task ID 
+      summary: Get Single Task 
+      operationId: GetSingleTask     
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+
+    patch:
+      tags:
+      - Single Task
+      summary: Update Task
+      operationId: UpdateTask
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskRequest'
+            example:
+              name: st
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+
+    delete:
+      tags:
+      - Single Task
+      summary: Delete Task
+      operationId: DeleteTask
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+components:
+  schemas:
+    CreateTaskRequest:
+      title: CreateTaskRequest
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: test
+    UpdateTaskRequest:
+      title: UpdateTaskRequest
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: st
+tags:
+
+- name: Tasks
+  description: ''
+- name: Single Task
+  description: ''
